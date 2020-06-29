@@ -4,7 +4,8 @@ import {ProductsComponent} from './products/products.component';
 import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
-  {path: '', component: ProductsComponent}
+  {path: 'products/:paramsId/:paramsId2', component: ProductsComponent},
+  {path: '', redirectTo:'products/1/0', pathMatch:'full'}
 ];
 
 @NgModule({
