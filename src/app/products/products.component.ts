@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   private progress: number;
   private currentFileUpload;
   private title:string;
+  timestamp:number = 0;
 
   constructor(private catService: CatalogueService, private route:ActivatedRoute, private router:Router, private toastr: ToastrService) {}
 
@@ -78,12 +79,17 @@ export class ProductsComponent implements OnInit {
         this.progress = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse){
         this.toastr.success('Fin du téléchargement...', 'Succès!');
-        this.getProducts('/products/search/selectedProducts');
+        this.timestamp = Date.now();
       }
     }, err => {
       this.toastr.error('Problème de chargement', 'Erreur!');
     });
     this.selectedFiles = undefined;
+  }
+
+  // fonction qui retourne la date
+  getTS() {
+    return this.timestamp;
   }
 
 }
