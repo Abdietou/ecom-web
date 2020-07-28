@@ -45,4 +45,8 @@ export class AppComponent implements OnInit{
     this.currentCategorie = undefined;
     this.router.navigateByUrl("/products/4/0");
   }
+
+  onLogout() {
+    this.router.navigateByUrl('/login');
+  }
 }
