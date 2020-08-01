@@ -3,6 +3,7 @@ import {CatalogueService} from '../catalogue.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-products',
@@ -19,7 +20,8 @@ export class ProductsComponent implements OnInit {
   private title:string;
   timestamp:number = 0;
 
-  constructor(private catService: CatalogueService, private route:ActivatedRoute, private router:Router, private toastr: ToastrService) {}
+  constructor(private catService: CatalogueService, private route:ActivatedRoute, private router:Router,
+              private toastr: ToastrService, public authService: AuthenticationService ) {}
 
   ngOnInit() {
     this.router.events.subscribe(params=> {

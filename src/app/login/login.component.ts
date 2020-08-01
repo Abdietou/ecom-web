@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(dataForm.username, dataForm.password);
     if (this.authService.isAuthenticated) {
       this.toastr.success('Authentification réussie', 'Succès!');
+      this.authService.saveAuthenticatedUser();
       this.router.navigateByUrl('');
     } else {
       this.toastr.error('Login ou mot de passe incorrect', 'Erreur!');

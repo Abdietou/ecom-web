@@ -13,6 +13,7 @@ export class AuthenticationService {
 
   public isAuthenticated : boolean;
   public userAuthenticated;
+  public token:string;
 
   constructor() { }
 
@@ -21,14 +22,47 @@ export class AuthenticationService {
     this.users.forEach(u=>{
       if (u.username == username && u.passsorwd== password) {
         user=u;
+        this.token = btoa(JSON.stringify({username:u.username, roles:u.roles}));
       }
     });
     if (user) {
       this.isAuthenticated = true;
-      this.userAuthenticated=user;
+      this.userAuthenticated = user;
     } else {
       this.isAuthenticated = false;
-      this.userAuthenticated=undefined;
+      this.userAuthenticated = undefined;
     }
+  }
+
+  public isAdmin() {
+    if (this.isAuthenticated) {
+      if (this.userAuthenticated.roles.indexOf('ADMIN') > -1) {
+        return true;
+      }
+      return false;
+    }
+  }
+
+  public saveAuthenticatedUser() {
+    if (this.userAuthenticated) {
+      localStorage.setItem('authUser', this.token);
+    }
+  }
+
+  public loadAuthenticatedUserFromLocalStorage () {
+    let t = localStorage.getItem('authUser');
+    if (t) {
+      let user = JSON.parse(atob(t));
+      this.userAuthenticated = {username: user.username, roles: user.roles};
+      this.isAuthenticated = true;
+      this.token = t;
+    }
+  }
+
+  public removeTokenFromLocalStorage() {
+    localStorage.removeItem('authUser');
+    this.isAuthenticated = false;
+    this.token = undefined;
+    this.userAuthenticated = undefined;
   }
 }
