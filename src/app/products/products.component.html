@@ -42,7 +42,7 @@
             </tr>
           </table>
            -->
-          <img class="img-thumbnail" src="{{this.catService.host+'/photoProduct/'+p.id+'?ts='+getTS()}}"/>
+          <img class="img-thumbnail img-rounded btn" (click)="onProductDetails(p)" src="{{this.catService.host+'/photoProduct/'+p.id+'?ts='+getTS()}}"/>
 
           <div *ngIf="authService.isAdmin()">
 

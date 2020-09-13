@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    LoginComponent
+    LoginComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
