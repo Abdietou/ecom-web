@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CatalogueService} from '../catalogue.service';
-import {Product} from '../model/product.model';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {AuthenticationService} from '../services/authentication.service';
