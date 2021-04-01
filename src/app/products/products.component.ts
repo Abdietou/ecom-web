@@ -5,6 +5,7 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import {AuthenticationService} from '../services/authentication.service';
 import {Product} from '../model/product.model';
+import { CaddyService } from '../services/caddy.service';
 
 @Component({
   selector: 'app-products',
@@ -22,7 +23,7 @@ export class ProductsComponent implements OnInit {
   timestamp:number = 0;
 
   constructor(private catService: CatalogueService, private route:ActivatedRoute, private router:Router,
-              private toastr: ToastrService, public authService: AuthenticationService ) {}
+              private toastr: ToastrService, public authService: AuthenticationService, public caddyService: CaddyService ) {}
 
   ngOnInit() {
     this.router.events.subscribe(params=> {
@@ -98,6 +99,10 @@ export class ProductsComponent implements OnInit {
   onProductDetails(p:Product){
     let url = btoa(p._links.product.href);
     this.router.navigateByUrl("product-detail/" + url);
+  }
+
+  onAddProductToCaddy(p:Product) {
+    this.caddyService.addProductToCaddy(p);
   }
 
 }

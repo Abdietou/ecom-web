@@ -14,10 +14,15 @@
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      <li><a href="#">Page 2</a></li>
+      <li><a routerLink="/caddies">Caddies</a></li>
       <li><a href="#">Page 3</a></li>
     </ul>
     <ul class="nav navbar-nav pull-right">
+      <li>
+        <a>
+          {{caddyService.getCurrentCaddy().name}} | {{caddyService.getCurrentCaddy().items.size}}
+        </a>
+      </li>
       <li>
         <a class="btn" (click)="onLogout()">
           <span class="glyphicon glyphicon-log-out"></span>
